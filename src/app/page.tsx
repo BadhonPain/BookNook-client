@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, BookOpenCheck, Clock3, LibraryBig } from "lucide-react";
 import HomeBookShelves from "@/components/HomeBookShelves";
 import HeroSlider from "@/components/HeroSlider";
+import RecommendationShelf from "@/components/RecommendationShelf";
 
 const steps = [
   {
@@ -25,6 +26,8 @@ export default function Home() {
   return (
     <>
       <HeroSlider />
+
+      <RecommendationShelf />
 
       <HomeBookShelves />
 

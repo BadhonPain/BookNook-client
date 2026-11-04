@@ -586,6 +586,151 @@ textarea:focus-visible {
   line-height: 1.6;
 }
 
+.recommendation-section {
+  padding-bottom: 12px;
+}
+
+.recommendation-history {
+  flex: 0 0 auto;
+  padding: 8px 12px;
+  border: 1px solid #dfe7dc;
+  border-radius: 999px;
+  background: #f0f4ee;
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.recommendation-sign-in {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 24px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.recommendation-sign-in p {
+  margin: 0;
+  color: #555d54;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.recommendation-preferences {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.8fr) auto;
+  align-items: end;
+  gap: 22px;
+  margin: 0 0 25px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.recommendation-preferences fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.recommendation-preferences legend,
+.recommendation-interest > span {
+  display: block;
+  margin-bottom: 11px;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.recommendation-category-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.recommendation-choice {
+  display: inline-flex;
+  min-height: 35px;
+  align-items: center;
+  gap: 7px;
+  padding: 0 10px;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  color: #4f594f;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.recommendation-choice:has(input:checked) {
+  border-color: #9db5a3;
+  background: #edf3ec;
+  color: var(--green-dark);
+}
+
+.recommendation-choice input {
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  accent-color: var(--green);
+}
+
+.recommendation-interest {
+  display: block;
+  min-width: 0;
+}
+
+.recommendation-interest input {
+  width: 100%;
+  min-height: 40px;
+  padding: 0 11px;
+  border: 1px solid #dcded7;
+  border-radius: 7px;
+  background: #fff;
+  color: var(--ink);
+  font-size: 13px;
+}
+
+.recommendation-interest small {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.recommendation-save {
+  white-space: nowrap;
+}
+
+.recommendation-card {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.recommendation-card .book-card {
+  flex: 1;
+}
+
+.recommendation-reasons {
+  min-height: 38px;
+  margin: 0;
+  padding: 0 3px 4px 17px;
+  color: #536653;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.recommendation-reasons li + li {
+  margin-top: 3px;
+}
+
 .carousel-section .section-heading {
   align-items: flex-end;
   margin-bottom: 22px;
@@ -1835,6 +1980,23 @@ textarea:focus-visible {
 
   .carousel-section + .carousel-section {
     padding-top: 42px;
+  }
+
+  .recommendation-preferences {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 16px;
+  }
+
+  .recommendation-sign-in {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+    padding: 18px;
+  }
+
+  .recommendation-history {
+    align-self: flex-start;
   }
 
   .book-carousel-skeleton {
