@@ -1,16 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  --paper: #fbf8f2;
-  --surface: #fffefa;
-  --ink: #252b25;
-  --muted: #73776e;
-  --green: #284c3c;
-  --green-dark: #19382c;
-  --sage: #e7ede5;
-  --rust: #b65b3f;
-  --line: #e9e5dc;
-  --shadow: 0 18px 55px rgb(34 45 34 / 9%);
+  color-scheme: dark;
+  --paper: #0e192c;
+  --surface: #1a3046;
+  --ink: #eceaf1;
+  --muted: #a7b0c1;
+  --green: #a28abb;
+  --green-dark: #ded8e8;
+  --sage: #423a59;
+  --rust: #c4addd;
+  --line: #354a60;
+  --shadow: 0 18px 55px rgb(0 0 0 / 28%);
 }
 
 @theme inline {
@@ -2199,5 +2200,415 @@ textarea:focus-visible {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  background: var(--paper);
+}
+
+::selection {
+  background: #8b73aa;
+  color: #fff;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline-color: #c2a8df;
+}
+
+.site-header {
+  border-bottom-color: rgb(255 255 255 / 12%);
+  background: rgb(151 125 181 / 97%);
+}
+
+.brand,
+.nav-link,
+.nav-link:hover,
+.nav-link-active {
+  color: #fff;
+}
+
+.brand-mark {
+  background: rgb(255 255 255 / 17%);
+  color: #fff;
+}
+
+.nav-link-active::after {
+  background: #eee5fa;
+}
+
+.mobile-toggle,
+.profile-trigger {
+  border-color: rgb(255 255 255 / 28%);
+  background: rgb(255 255 255 / 12%);
+  color: #fff;
+}
+
+.avatar {
+  background: rgb(255 255 255 / 18%);
+  color: #fff;
+}
+
+.profile-menu {
+  border-color: #66577d;
+  background: #1a263b;
+}
+
+.profile-menu a,
+.profile-menu button {
+  color: var(--ink);
+}
+
+.profile-menu a:hover,
+.profile-menu button:hover {
+  background: #2a3550;
+}
+
+.button {
+  background: #a58dbf;
+  color: #17172a;
+}
+
+.button:hover {
+  background: #b7a2ce;
+}
+
+.button-outline {
+  border-color: #657187;
+  background: #202e44;
+  color: #e8e3f0;
+}
+
+.button-outline:hover {
+  border-color: #aa92c7;
+  background: #334058;
+}
+
+.button-light {
+  background: #eee9f4;
+  color: #28223a;
+}
+
+.button-light:hover {
+  background: #fff;
+}
+
+.hero-section {
+  background:
+    radial-gradient(ellipse at 87% 24%, rgb(148 119 177 / 18%), transparent 31%),
+    linear-gradient(110deg, #121e33 0%, #14253b 57%, #1b2b42 100%);
+}
+
+.hero-section::before {
+  background:
+    linear-gradient(90deg, transparent, rgb(183 157 211 / 7%)),
+    repeating-linear-gradient(90deg, transparent 0 94px, rgb(183 157 211 / 5%) 95px 96px);
+}
+
+.hero-copy h1,
+.section-heading h2,
+.step-card h3,
+.page-header h1,
+.form-card h1,
+.form-card h2,
+.detail-copy h1,
+.modal-card h2 {
+  color: #f0edf4;
+}
+
+.hero-copy h1 em,
+.eyebrow {
+  color: #c4addd;
+}
+
+.hero-copy > p:not(.eyebrow) {
+  color: #b3bac8;
+}
+
+.book-cover {
+  border-color: #e5dfeb;
+  background: linear-gradient(155deg, #63758e 0%, #304662 75%);
+}
+
+.book-cover-one {
+  background: linear-gradient(145deg, #98749e, #584563);
+}
+
+.book-cover-two {
+  background: linear-gradient(145deg, #687fa0, #354968);
+}
+
+.book-cover-three {
+  background: linear-gradient(145deg, #a38caf, #625373);
+}
+
+.hero-stamp {
+  border-color: rgb(196 173 221 / 35%);
+  background: #1a3046;
+  color: #e6d9f3;
+}
+
+.hero-pagination .swiper-pagination-bullet {
+  background: #d3bee8;
+}
+
+.hero-swiper .swiper-button-prev,
+.hero-swiper .swiper-button-next,
+.book-carousel .swiper-button-prev,
+.book-carousel .swiper-button-next {
+  border-color: #53647b;
+  background: #1a3046;
+  color: #dfccef;
+  box-shadow: 0 4px 14px rgb(0 0 0 / 30%);
+}
+
+.hero-swiper .swiper-button-prev:hover,
+.hero-swiper .swiper-button-next:hover,
+.book-carousel .swiper-button-prev:hover,
+.book-carousel .swiper-button-next:hover {
+  background: #a28abb;
+  color: #15192a;
+}
+
+.recommendation-history,
+.recommendation-preferences,
+.recommendation-sign-in,
+.step-card,
+.form-card,
+.meta-item,
+.table-wrap,
+.modal-card,
+.toast {
+  border-color: var(--line);
+  background: var(--surface);
+}
+
+.recommendation-choice {
+  border-color: #465970;
+  color: #c5c8d3;
+}
+
+.recommendation-choice:has(input:checked) {
+  border-color: #a28abb;
+  background: #443b5c;
+  color: #f0e9f8;
+}
+
+.recommendation-interest > span,
+.recommendation-preferences legend {
+  color: var(--ink);
+}
+
+.recommendation-interest input,
+.form-field input,
+.form-field select,
+.form-field textarea,
+.search-field,
+.select-field,
+.pagination-button {
+  border-color: #43566c;
+  background: #17273c;
+  color: var(--ink);
+}
+
+.form-field {
+  color: #d2d3dc;
+}
+
+.form-field input[readonly] {
+  background: #202d41;
+  color: var(--muted);
+}
+
+.search-field input {
+  color: var(--ink);
+}
+
+.book-card {
+  border-color: #3a526a;
+  background: #1a3046;
+  box-shadow: 0 5px 16px rgb(0 0 0 / 16%);
+}
+
+.book-card-image,
+.detail-cover {
+  background: #14253a;
+}
+
+.availability-pill {
+  border-color: rgb(180 192 208 / 35%);
+  background: rgb(18 31 49 / 92%);
+  color: #e6d9f3;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 28%);
+}
+
+.availability-unavailable {
+  color: #f0a8b2;
+}
+
+.category-pill,
+.step-icon,
+.borrow-thumb,
+.profile-large-avatar {
+  background: #443b5c;
+  color: #e0d0f0;
+}
+
+.book-cover-fallback {
+  border-color: #b8a4c9;
+  background:
+    radial-gradient(circle at 80% 18%, rgb(255 255 255 / 15%), transparent 31%),
+    linear-gradient(150deg, #6e6b91, #354765);
+}
+
+.book-image-placeholder {
+  border-color: #b8a4c9;
+  background: linear-gradient(150deg, #6e6b91, #354765);
+}
+
+.skeleton-block,
+.skeleton-line {
+  background: linear-gradient(100deg, #22344a 25%, #2d4057 38%, #22344a 62%);
+  background-size: 300% 100%;
+}
+
+.empty-state {
+  border-color: #465970;
+  background: rgb(26 48 70 / 56%);
+}
+
+.empty-state h3,
+.detail-meta strong {
+  color: #e0d4ed;
+}
+
+.reading-note {
+  background: #1b2940;
+}
+
+.reading-note .eyebrow,
+.reading-note-icon {
+  color: #d2bce8;
+}
+
+.reading-note h2 {
+  color: #f0edf4;
+}
+
+.step-number {
+  color: #76839a;
+}
+
+.site-footer {
+  background: #101c30;
+}
+
+.footer-title {
+  color: #e0d4ed;
+}
+
+.footer-bottom {
+  border-top-color: #2a3d54;
+}
+
+.page-header {
+  background:
+    radial-gradient(ellipse at 85% 50%, rgb(148 119 177 / 14%), transparent 32%),
+    #15243a;
+}
+
+.catalog-filter {
+  color: var(--muted);
+}
+
+.pagination-button {
+  color: #e0d4ed;
+}
+
+.pagination-button:hover:not(:disabled),
+.pagination-button-active {
+  border-color: #a28abb;
+  background: #a28abb;
+  color: #17172a;
+}
+
+.form-error {
+  color: #f1a4ae;
+}
+
+.form-divider {
+  color: #8e98aa;
+}
+
+.toast-error {
+  border-left-color: #e18b9a;
+}
+
+.spinner {
+  border-color: #3a4b60;
+  border-top-color: #c4addd;
+}
+
+.auth-aside {
+  background: #75618f;
+}
+
+.auth-aside .eyebrow {
+  color: #f0e2ff;
+}
+
+.data-table th {
+  background: #202f45;
+  color: #c0c6d3;
+}
+
+.data-table th,
+.data-table td {
+  border-bottom-color: #33485e;
+}
+
+.icon-button {
+  border-color: #43566c;
+  background: #17273c;
+  color: #d6c3e9;
+}
+
+.button-danger {
+  background: #a44f65;
+  color: #fff;
+}
+
+.button-danger:hover {
+  background: #853d54;
+}
+
+.image-upload-row {
+  border-color: #59617b;
+  background: #192b40;
+  color: #d6c3e9;
+}
+
+.borrow-book-link:hover,
+.text-link:hover,
+.footer-links a:hover {
+  color: #d1b9eb;
+}
+
+.modal-backdrop {
+  background: rgb(3 8 18 / 76%);
+}
+
+@media (max-width: 760px) {
+  .main-nav {
+    border-bottom-color: rgb(255 255 255 / 18%);
+    background: #8b73a7;
+  }
+
+  .main-nav .nav-link {
+    border-bottom-color: rgb(255 255 255 / 16%);
   }
 }
