@@ -1781,6 +1781,48 @@ textarea:focus-visible {
   object-fit: cover;
 }
 
+.profile-settings {
+  display: grid;
+  gap: 20px;
+}
+
+.profile-settings-card .profile-large-avatar {
+  margin: 0 0 22px;
+}
+
+.profile-settings-card .form-card-intro,
+.profile-password-card .form-card-intro {
+  margin-bottom: 24px;
+}
+
+.profile-remove-image {
+  align-self: flex-start;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #d3a6bc;
+  cursor: pointer;
+  font-size: 12px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.profile-upload-preview {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.profile-upload-preview img {
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 .modal-backdrop {
   position: fixed;
   inset: 0;

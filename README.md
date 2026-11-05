@@ -7,6 +7,7 @@ BookNook is a small online library for discovering, sharing, borrowing, and retu
 - Browse a responsive, searchable catalog with featured, most-borrowed, and newly added book carousels.
 - Get personalized, explainable recommendations from borrowed books, favorite categories, and author/topic interests.
 - Register with email and password or sign in with Google.
+- Upload a profile photo during registration, then update your name, photo, or password from your profile.
 - Add and edit book listings with an uploaded cover image.
 - Borrow available copies, track return dates, and return books from your account.
 - Manage your own listings with a confirmation step before deleting.

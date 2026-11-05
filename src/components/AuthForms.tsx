@@ -6,6 +6,7 @@ import { ArrowRight } from "lucide-react";
 import { useState } from "react";
 import { authClient } from "@/lib/auth-client";
 import { useToast } from "@/components/ToastProvider";
+import { uploadProfileImage } from "@/lib/images";
 
 function getCallbackUrl(value: string | null) {
   if (value && value.startsWith("/") && !value.startsWith("//")) return value;
@@ -139,6 +140,7 @@ export function RegisterForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [image, setImage] = useState("");
+  const [uploadingImage, setUploadingImage] = useState(false);
   const [password, setPassword] = useState("");
   const [pending, setPending] = useState(false);
   const [error, setError] = useState("");
@@ -148,6 +150,28 @@ export function RegisterForm() {
     if (!/[A-Z]/.test(value)) return "Add at least one uppercase letter.";
     if (!/[a-z]/.test(value)) return "Add at least one lowercase letter.";
     return "";
+  }
+
+  async function handleImageUpload(file: File | undefined) {
+    if (!file) return;
+    if (!["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
+      setError("Choose a JPG, PNG, or WebP image for your profile photo.");
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      setError("Choose a profile photo smaller than 5 MB.");
+      return;
+    }
+
+    setError("");
+    setUploadingImage(true);
+    try {
+      setImage(await uploadProfileImage(file));
+    } catch (cause) {
+      setError(cause instanceof Error ? cause.message : "The profile photo could not be uploaded.");
+    } finally {
+      setUploadingImage(false);
+    }
   }
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -210,16 +234,40 @@ export function RegisterForm() {
                 value={email}
               />
             </label>
-            <label className="form-field">
-              Photo URL <span className="form-hint">Optional</span>
+            <div className="form-field">
+              <span>Profile photo <span className="form-hint">Optional · JPG, PNG, or WebP up to 5 MB</span></span>
+              <label className="image-upload-row">
+                <input
+                  accept="image/jpeg,image/png,image/webp"
+                  aria-label="Upload a profile photo from your device"
+                  disabled={uploadingImage}
+                  onChange={(event) => {
+                    const file = event.currentTarget.files?.[0];
+                    event.currentTarget.value = "";
+                    void handleImageUpload(file);
+                  }}
+                  type="file"
+                />
+                <span className="image-upload-status" aria-live="polite">
+                  {uploadingImage ? "Uploading photo..." : image ? "Photo ready" : "Choose from device"}
+                </span>
+              </label>
+              {image && (
+                <span className="profile-upload-preview">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img alt="Profile photo preview" src={image} />
+                  <span>Photo preview</span>
+                </span>
+              )}
               <input
                 autoComplete="url"
+                aria-label="Profile photo URL"
                 onChange={(event) => setImage(event.target.value)}
-                placeholder="https://..."
+                placeholder="Or paste a photo URL"
                 type="url"
                 value={image}
               />
-            </label>
+            </div>
             <label className="form-field">
               Password
               <input
@@ -234,7 +282,7 @@ export function RegisterForm() {
               </span>
             </label>
             {error && <p className="form-error" role="alert">{error}</p>}
-            <button className="button" disabled={pending} type="submit">
+            <button className="button" disabled={pending || uploadingImage} type="submit">
               {pending ? "Creating account..." : "Create account"}
               <ArrowRight size={17} aria-hidden="true" />
             </button>
