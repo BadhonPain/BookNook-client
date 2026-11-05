@@ -1045,28 +1045,39 @@ textarea:focus-visible {
 }
 
 .site-footer {
-  background: #f0eee7;
+  border-top: 1px solid rgb(255 255 255 / 7%);
+  background: #111b1b;
 }
 
 .footer-wrap {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr;
-  gap: 40px;
-  padding: 54px 0 26px;
+  grid-template-columns: 1.3fr 0.9fr 1fr 1fr;
+  gap: 52px;
+  padding: 52px 0 42px;
+}
+
+.footer-brand {
+  color: #f0eee7;
+}
+
+.footer-brand-mark {
+  background: #8fc69a;
+  color: #102016;
 }
 
 .footer-about p {
   max-width: 320px;
   margin: 15px 0 0;
-  color: var(--muted);
+  color: #a9b5ae;
   font-size: 13px;
   line-height: 1.7;
 }
 
 .footer-title {
-  margin: 5px 0 16px;
-  color: var(--green-dark);
-  font-size: 13px;
+  margin: 5px 0 18px;
+  color: #f0eee7;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
   font-weight: 800;
 }
 
@@ -1075,21 +1086,81 @@ textarea:focus-visible {
   flex-direction: column;
   align-items: flex-start;
   gap: 11px;
-  color: var(--muted);
+  color: #a9b5ae;
   font-size: 13px;
 }
 
-.footer-links a:hover {
-  color: var(--green);
+.footer-links a,
+.footer-project-link,
+.footer-bottom a {
+  transition: color 160ms ease;
+}
+
+.footer-links a:hover,
+.footer-project-link:hover,
+.footer-bottom a:hover {
+  color: #8fc69a;
+}
+
+.footer-social-link {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px;
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: 999px;
+  background: rgb(0 0 0 / 16%);
+  color: #e8eee8;
+  font-size: 13px;
+  transition:
+    border-color 160ms ease,
+    background 160ms ease,
+    color 160ms ease;
+}
+
+.footer-social-link:hover {
+  border-color: rgb(143 198 154 / 50%);
+  background: rgb(143 198 154 / 10%);
+  color: #a5d6ad;
+}
+
+.footer-project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 16px;
+  color: #c4cdc6;
+  font-size: 12px;
+}
+
+.footer-follow-note {
+  max-width: 230px;
+  margin: 12px 0 0;
+  color: #87958d;
+  font-size: 12px;
+  line-height: 1.6;
 }
 
 .footer-bottom {
+  display: flex;
   width: min(1180px, calc(100% - 48px));
   margin: 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
   padding: 18px 0 22px;
-  border-top: 1px solid #dfddd3;
-  color: var(--muted);
+  border-top: 1px solid rgb(255 255 255 / 10%);
+  color: #a9b5ae;
   font-size: 11px;
+}
+
+.footer-bottom a {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 5px;
+  color: #c4cdc6;
 }
 
 .page-header {
@@ -2012,11 +2083,7 @@ textarea:focus-visible {
 
   .footer-wrap {
     grid-template-columns: 1fr 1fr;
-    gap: 27px;
-  }
-
-  .footer-about {
-    grid-column: 1 / -1;
+    gap: 32px 27px;
   }
 
   .catalog-controls {
@@ -2127,8 +2194,10 @@ textarea:focus-visible {
     grid-template-columns: 1fr;
   }
 
-  .footer-about {
-    grid-column: auto;
+  .footer-bottom {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
   }
 
   .form-card {
@@ -2838,12 +2907,51 @@ html[data-theme="light"] .site-footer {
   background: #e9eee7;
 }
 
+html[data-theme="light"] .footer-brand {
+  color: var(--green-dark);
+}
+
+html[data-theme="light"] .footer-brand-mark {
+  background: #8fc69a;
+  color: #102016;
+}
+
+html[data-theme="light"] .footer-about p,
+html[data-theme="light"] .footer-links,
+html[data-theme="light"] .footer-follow-note {
+  color: #657064;
+}
+
 html[data-theme="light"] .footer-title {
   color: var(--green-dark);
 }
 
 html[data-theme="light"] .footer-bottom {
   border-top-color: var(--line);
+  color: #657064;
+}
+
+html[data-theme="light"] .footer-social-link {
+  border-color: var(--line);
+  background: rgb(255 255 255 / 55%);
+  color: var(--green-dark);
+}
+
+html[data-theme="light"] .footer-social-link:hover {
+  border-color: #8fc69a;
+  background: #e2eee2;
+  color: var(--green-dark);
+}
+
+html[data-theme="light"] .footer-project-link,
+html[data-theme="light"] .footer-bottom a {
+  color: var(--green);
+}
+
+html[data-theme="light"] .footer-links a:hover,
+html[data-theme="light"] .footer-project-link:hover,
+html[data-theme="light"] .footer-bottom a:hover {
+  color: var(--green-dark);
 }
 
 html[data-theme="light"] .page-header {

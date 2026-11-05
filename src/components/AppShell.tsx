@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { BookOpen, ChevronDown, Menu, Moon, Sun, X } from "lucide-react";
+import { ArrowUpRight, BookOpen, ChevronDown, Code2, Menu, Moon, Sun, X } from "lucide-react";
 import { Suspense, useState, useSyncExternalStore } from "react";
 import { authClient } from "@/lib/auth-client";
 import ToastProvider from "@/components/ToastProvider";
@@ -202,34 +202,66 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       <footer className="site-footer">
         <div className="footer-wrap">
           <div className="footer-about">
-            <Link className="brand" href="/">
-              <span className="brand-mark" aria-hidden="true">
-                <BookOpen size={22} />
+            <Link className="brand footer-brand" href="/">
+              <span className="brand-mark footer-brand-mark" aria-hidden="true">
+                <BookOpen size={20} />
               </span>
               <span>BookNook</span>
             </Link>
-            <p>A small online library for curious minds and stories worth sharing.</p>
+            <p>
+              A neighborhood library on the web. Discover a good read, share a
+              book, and keep stories moving.
+            </p>
           </div>
-          <div>
+          <div className="footer-column">
             <h2 className="footer-title">Explore</h2>
             <div className="footer-links">
-              <Link href="/">Home</Link>
-              <Link href="/books">Browse books</Link>
-              <Link href="/add-book">Share a book</Link>
+              <Link href="/books">Browse all books</Link>
+              <Link href="/#featured-books">Featured books</Link>
+              <Link href="/#most-borrowed">Most borrowed</Link>
+              <Link href="/#new-arrivals">New arrivals</Link>
             </div>
           </div>
-          <div>
-            <h2 className="footer-title">Connect</h2>
+          <div className="footer-column">
+            <h2 className="footer-title">Your BookNook</h2>
             <div className="footer-links">
-              <span>Questions? Visit the project repository.</span>
-              <a href="https://github.com/BadhonPain/BookNook-client" rel="noreferrer" target="_blank">
-                GitHub
-              </a>
+              <Link href="/add-book">Share a book</Link>
+              <Link href="/my-books">My books</Link>
+              <Link href="/my-borrows">My borrows</Link>
+              <Link href="/profile">My profile</Link>
+              <Link href="/login">Log in</Link>
+              <Link href="/register">Create an account</Link>
             </div>
+          </div>
+          <div className="footer-column footer-follow">
+            <h2 className="footer-title">Follow us</h2>
+            <a
+              aria-label="Visit BadhonPain on GitHub"
+              className="footer-social-link"
+              href="https://github.com/BadhonPain"
+              rel="noreferrer"
+              target="_blank"
+            >
+              <Code2 size={19} aria-hidden="true" />
+              <span>GitHub</span>
+              <ArrowUpRight size={15} aria-hidden="true" />
+            </a>
+            <a
+              className="footer-project-link"
+              href="https://github.com/BadhonPain/BookNook-client"
+              rel="noreferrer"
+              target="_blank"
+            >
+              View the project source <ArrowUpRight size={14} aria-hidden="true" />
+            </a>
+            <p className="footer-follow-note">
+              Follow along and explore the code behind BookNook.
+            </p>
           </div>
         </div>
         <div className="footer-bottom">
-          © BookNook. Made for readers, wherever they are.
+          <span>© BookNook. Made for readers, wherever they are.</span>
+          <Link href="/books">Find your next read <ArrowUpRight size={14} aria-hidden="true" /></Link>
         </div>
       </footer>
     </div>
