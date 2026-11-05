@@ -2,10 +2,30 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { BookOpen, ChevronDown, Menu, X } from "lucide-react";
-import { Suspense, useState } from "react";
+import { BookOpen, ChevronDown, Menu, Moon, Sun, X } from "lucide-react";
+import { Suspense, useState, useSyncExternalStore } from "react";
 import { authClient } from "@/lib/auth-client";
 import ToastProvider from "@/components/ToastProvider";
+
+const themeStorageKey = "booknook-theme";
+
+function getThemeSnapshot(): "dark" | "light" {
+  return window.localStorage.getItem(themeStorageKey) === "light" ? "light" : "dark";
+}
+
+function subscribeToTheme(onChange: () => void) {
+  const syncTheme = () => {
+    document.documentElement.dataset.theme = getThemeSnapshot();
+    onChange();
+  };
+  document.documentElement.dataset.theme = getThemeSnapshot();
+  window.addEventListener("storage", syncTheme);
+  window.addEventListener("booknook-theme-change", syncTheme);
+  return () => {
+    window.removeEventListener("storage", syncTheme);
+    window.removeEventListener("booknook-theme-change", syncTheme);
+  };
+}
 
 const publicLinks = [
   { href: "/", label: "Home" },
@@ -58,7 +78,14 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const { data: session, isPending } = authClient.useSession();
   const [menuOpen, setMenuOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
+  const theme = useSyncExternalStore(subscribeToTheme, getThemeSnapshot, () => "dark");
   const user = session?.user;
+
+  function toggleTheme() {
+    const nextTheme = theme === "dark" ? "light" : "dark";
+    window.localStorage.setItem(themeStorageKey, nextTheme);
+    window.dispatchEvent(new Event("booknook-theme-change"));
+  }
 
   async function handleSignOut() {
     await authClient.signOut();
@@ -103,6 +130,16 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
           </Suspense>
 
           <div className="nav-actions">
+            <button
+              aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+              aria-pressed={theme === "light"}
+              className="theme-toggle"
+              onClick={toggleTheme}
+              title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+              type="button"
+            >
+              {theme === "dark" ? <Sun size={19} aria-hidden="true" /> : <Moon size={19} aria-hidden="true" />}
+            </button>
             {!isPending && !user && (
               <>
                 <Link className="button button-outline button-small" href="/login">
