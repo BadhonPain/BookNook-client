@@ -1,31 +1,41 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, BookPlus } from "lucide-react";
 import { useSyncExternalStore } from "react";
-import { A11y, Autoplay, EffectFade, Keyboard, Navigation, Pagination } from "swiper/modules";
+import { A11y, Autoplay, EffectFade, Keyboard, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-fade";
-import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 const slides = [
   {
-    eyebrow: "A neighborhood of good reads",
-    title: <>Find a story<br />that <em>stays</em> with you.</>,
-    description:
-      "Explore a shared world of books, discover new perspectives, and let great stories travel further.",
+    eyebrow: "BookNook",
+    title: <>Borrow, read,<br />return. Repeat.</>,
+    description: "Seven days for every book. Return it with one click when you are done.",
+    image:
+      "https://images.unsplash.com/photo-1535403032362-006ffd1795ae?auto=format&fit=crop&w=2400&q=85",
   },
   {
-    eyebrow: "Curiosity lives here",
-    title: <>Follow a thought.<br />Meet a <em>new world.</em></>,
-    description: "From faraway histories to fresh ideas, there is always another page to turn.",
+    eyebrow: "Find your next chapter",
+    title: <>A new story<br />is waiting for you.</>,
+    description: "Explore a shared library and discover a book you will want to pass along.",
+    image:
+      "https://images.unsplash.com/photo-1616330682546-2468b2d8dd17?auto=format&fit=crop&w=2400&q=85",
   },
   {
-    eyebrow: "Read a little. Share a lot.",
-    title: <>Pass a good book<br />to the <em>next reader.</em></>,
-    description: "Borrow what catches your eye, then return it when your next chapter is done.",
+    eyebrow: "Good books travel",
+    title: <>Read a little.<br />Share a lot.</>,
+    description: "Borrow what catches your eye, then make room for the next reader.",
+    image:
+      "https://images.unsplash.com/photo-1535905557558-afc4877a26fc?auto=format&fit=crop&w=2400&q=85",
+  },
+  {
+    eyebrow: "Your next favorite",
+    title: <>Turn the page.<br />Find your story.</>,
+    description: "Browse the BookNook shelves and find your next great read.",
+    image:
+      "https://images.unsplash.com/photo-1677462998907-96f090f463ef?auto=format&fit=crop&w=2400&q=85",
   },
 ];
 
@@ -41,25 +51,6 @@ const subscribeToReducedMotion = (onChange: () => void) => {
 const getReducedMotionSnapshot = () => window.matchMedia(reducedMotionQuery).matches;
 const getReducedMotionServerSnapshot = () => false;
 
-function BookIllustration() {
-  return (
-    <div className="hero-art" aria-hidden="true">
-      <div className="book-stack">
-        <div className="book-cover book-cover-one">
-          <span className="book-cover-title">The<br />Quiet<br />Garden</span>
-        </div>
-        <div className="book-cover book-cover-two">
-          <span className="book-cover-title">A Map<br />of Small<br />Wonders</span>
-        </div>
-        <div className="book-cover book-cover-three">
-          <span className="book-cover-title">Letters<br />from<br />Elsewhere</span>
-        </div>
-        <div className="hero-stamp">stories<br />to share</div>
-      </div>
-    </div>
-  );
-}
-
 export default function HeroSlider() {
   const isMounted = useSyncExternalStore(
     subscribeToMount,
@@ -72,19 +63,22 @@ export default function HeroSlider() {
     getReducedMotionServerSnapshot,
   );
   const heroContent = (slide: (typeof slides)[number]) => (
-    <div className="hero-content">
-      <div className="hero-copy">
-        <p className="eyebrow">{slide.eyebrow}</p>
-        <h1>{slide.title}</h1>
-        <p>{slide.description}</p>
-        <Link className="button" href="/books">
-          Browse books <ArrowRight size={17} aria-hidden="true" />
-        </Link>
-        <Link className="button button-outline hero-secondary-action" href="/add-book">
-          <BookPlus size={17} aria-hidden="true" /> Share a book
-        </Link>
+    <div
+      className="hero-slide"
+      style={{
+        backgroundImage: `linear-gradient(90deg, rgb(8 10 10 / 78%) 0%, rgb(8 10 10 / 54%) 45%, rgb(8 10 10 / 16%) 100%), url("${slide.image}")`,
+      }}
+    >
+      <div className="hero-content">
+        <div className="hero-copy">
+          <p className="eyebrow">{slide.eyebrow}</p>
+          <h1>{slide.title}</h1>
+          <p>{slide.description}</p>
+          <Link className="button" href="/books">
+            Browse Books
+          </Link>
+        </div>
       </div>
-      <BookIllustration />
     </div>
   );
 
@@ -112,13 +106,10 @@ export default function HeroSlider() {
         fadeEffect={{ crossFade: true }}
         keyboard={{ enabled: true, onlyInViewport: true }}
         loop
-        modules={[A11y, Autoplay, EffectFade, Keyboard, Navigation, Pagination]}
-        navigation
+        modules={[A11y, Autoplay, EffectFade, Keyboard, Pagination]}
         pagination={{ clickable: true, el: ".hero-pagination" }}
         className="hero-swiper"
         a11y={{
-          prevSlideMessage: "Previous slide",
-          nextSlideMessage: "Next slide",
           paginationBulletMessage: "Go to slide {{index}}",
         }}
       >
