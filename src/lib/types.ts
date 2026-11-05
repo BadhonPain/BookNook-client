@@ -22,8 +22,11 @@ export type Borrow = {
   bookId: string;
   bookTitle: string;
   bookImage: string;
+  bookAuthor?: string;
+  bookCategory?: BookCategory;
   userEmail: string;
   borrowDate: string;
   returnDate: string;
   returned: boolean;
+  updatedAt?: string;
 };
